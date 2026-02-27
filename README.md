@@ -5,24 +5,13 @@ This is the official code for our paper "TabDDPM: Modelling Tabular Data with Di
 You can view all the results and build your own tables with this [notebook](notebooks/Reports.ipynb). -->
 
 ## Setup the environment
-1. Install [conda](https://docs.conda.io/en/latest/miniconda.html) (just to manage the env).
-2. Run the following commands
+1. Build the docker image
     ```bash
-    export REPO_DIR=/path/to/the/code
-    cd $REPO_DIR
-
-    conda create -n tddpm python=3.9.7
-    conda activate tddpm
-
-    pip install torch==1.10.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
-    pip install -r requirements.txt
-
-    # if the following commands do not succeed, update conda
-    conda env config vars set PYTHONPATH=${PYTHONPATH}:${REPO_DIR}
-    conda env config vars set PROJECT_DIR=${REPO_DIR}
-
-    conda deactivate
-    conda activate tddpm
+    docker build -t tab-ddpm .
+    ```
+2. Run an interactive shell inside:
+    ```bash
+    docker run --rm -it -v "$(pwd)":/workspace/tab-ddpm tab-ddpm
     ```
 
 ## Running the experiments
